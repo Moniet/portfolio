@@ -11,7 +11,7 @@ const A = styled(Box)`
   position: relative;
   text-decoration: none;
   text-transform: lowercase;
-  letter-spacing: 1px;
+  letter-spacing: ${themeGet('letterSpacings.sm')};
   overflow: hidden;
   transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
   color: ${(props) =>
