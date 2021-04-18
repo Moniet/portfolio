@@ -13,14 +13,32 @@ const GlobalStyle = () => {
     <Global
       styles={css`
         @font-face {
-          src: url('/fonts/Pacifico-Regular.ttf');
-          font-family: 'Pacifico', cursive;
+          src: url('/fonts/Pacifico-Regular.ttf') format(truetype);
+          font-family: 'Pacifico';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
         }
-
         @font-face {
-          src: url('/fonts/Karla-Bold.ttf') url('/fonts/Karla-Regular.ttf')
-            url('/fonts/Karla-Italic.ttf');
-          font-family: 'Karla', sans-serif;
+          src: url('/fonts/Karla-Regular.ttf') format(truetype);
+          font-family: 'Karla';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+        }
+        @font-face {
+          src: url('/fonts/Karla-Italic.ttf') format(truetype);
+          font-family: 'Karla';
+          font-style: italic;
+          font-weight: 400;
+          font-display: swap;
+        }
+        @font-face {
+          src: url('/fonts/Karla-Bold.ttf') format(truetype);
+          font-family: 'Karla';
+          font-style: normal;
+          font-weight: 700;
+          font-display: swap;
         }
 
         html {
