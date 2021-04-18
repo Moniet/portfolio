@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import fadeIn from '../../keyframes/fadeIn'
 import Box from '../../lib/Box'
 import Flex from '../../lib/Flex'
+import Button from '../Button'
 import Greeting from './Greeting'
 
 const cloudsAnim = keyframes`
@@ -16,7 +17,7 @@ const cloudsAnim = keyframes`
 const mountainsAnim = keyframes`
   100% {
     opacity: 1;
-    transform: rotate(0deg);
+    transform: translate3d(0, 0, 0);
   }
 `
 
@@ -33,10 +34,10 @@ const Clouds = styled.g`
 `
 
 const Mountains = styled.g`
-  opacity: 0;
-  transform: rotate(10deg);
   transform-origin: center bottom;
-  animation: ${mountainsAnim} 1s ease forwards;
+  animation: ${mountainsAnim} 1.5s ease forwards;
+  transform: translate3d(0, 5%, 0);
+  opacity: 0;
 `
 
 const Svg = styled.svg`
@@ -616,10 +617,11 @@ const MountainScene = () => {
         left="lg"
         width="325px"
         css={css`
-          animation: ${fadeIn} 2s ease forwards;
+          animation: ${fadeIn} 2s ease 0.5s forwards;
         `}
       >
         <Greeting />
+        <Button>my work</Button>
       </Box>
     </Box>
   )

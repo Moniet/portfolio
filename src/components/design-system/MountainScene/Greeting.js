@@ -10,21 +10,25 @@ const Svg = styled.svg`
 
 const Greeting = () => {
   const handEmoji = useRef(null)
-  const [animationRunning, setAnimationRunning] = useState(false)
+  const animationRunning = useRef(true)
+  const setAnimationRunning = (bool) => (animationRunning.current = bool)
 
   const rotateHand = (degs) => handEmoji.current?.setAttribute('rotate', degs)
   const animateHand = (rotate) =>
-    !animationRunning &&
+    !animationRunning.current &&
     animate({
-      to: [0, 12, -14, 5, 0],
+      to: [0, 15, -15, 10, 0],
+      duration: 500,
       onUpdate: rotateHand,
-      duration: 600,
       onPlay: () => setAnimationRunning(true),
       onComplete: () => setAnimationRunning(false),
     })
 
   useEffect(() => {
-    setTimeout(animateHand, 1800)
+    setTimeout(() => {
+      setAnimationRunning(false)
+      animateHand()
+    }, 1500)
   }, [])
 
   return (
@@ -40,13 +44,8 @@ const Greeting = () => {
           strokeWidth="2"
           onMouseOver={() => animateHand()}
         />
-        <g
-          id="intro_text"
-          data-name="intro text"
-          transform="translate(29.31 258.999)"
-        >
+        <g data-name="intro text" transform="translate(29.31 258.999)">
           <text
-            id="hey_there_"
             transform="translate(143 33)"
             fill="#333"
             fontSize="33"
@@ -56,7 +55,6 @@ const Greeting = () => {
               hey there{' '}
             </tspan>
             <tspan
-              data-name="hand-emoji"
               y="0"
               fontFamily="AppleColorEmoji, Apple Color Emoji"
               ref={handEmoji}
@@ -65,9 +63,6 @@ const Greeting = () => {
             </tspan>
           </text>
           <text
-            id="i_m_moniet_sawhney_and_i_love_building_things_with_code"
-            data-name="i’m moniet sawhney
-and i love building things with code"
             transform="translate(49 66)"
             fill="#333"
             fontSize="33"
@@ -77,7 +72,7 @@ and i love building things with code"
               i’m moniet sawhney
             </tspan>
             <tspan x="0" y="68">
-              and i love developing{' '}
+              and i 😍 developing{' '}
             </tspan>
             <tspan x="0" y="106">
               beautiful UIs
