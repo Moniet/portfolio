@@ -13,6 +13,7 @@ const A = styled(Box)`
   text-transform: lowercase;
   letter-spacing: 1px;
   overflow: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
   color: ${(props) =>
     props.active
       ? themeGet('colors.primary')(props)
@@ -30,7 +31,6 @@ const A = styled(Box)`
     border-radius: 20px;
     transform: ${({ active }) =>
       active ? 'translate(0)' : 'translate(-20px)'};
-    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
   &:hover {
