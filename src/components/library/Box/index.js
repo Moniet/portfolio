@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import {
   border,
   color,
+  compose,
   layout,
   opacity,
   position,
@@ -11,8 +12,19 @@ import {
 } from 'styled-system'
 import shouldForwardProp from '@styled-system/should-forward-prop'
 
+const boxStylesProps = compose(
+  space,
+  layout,
+  border,
+  color,
+  position,
+  opacity,
+  shadow,
+  zIndex
+)
+
 const Box = styled('div', {
   shouldForwardProp,
-})(space, layout, border, color, position, opacity, shadow, zIndex)
+})(boxStylesProps)
 
 export default Box
