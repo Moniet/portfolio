@@ -1,40 +1,62 @@
 import { animate } from 'popmotion'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import useScrollStopped from 'src/hooks/useScrollStopped'
+
+// TODO
+// RESIZE EVENT HANDLER
 
 const useScrollSnap = ({ container, animation: { duration = 1000 } }) => {
-  const snapping = useRef(false)
+  const snapping = useRef(null)
   const getSnapping = () => snapping.current
-  const setSnapping = (boolean) => (snapping.current = boolean)
+  const setSnapping = (bool) => (snapping.current = bool)
+
+  const getDimensions = useCallback(() => {
+    const { top, height } = container.current?.getBoundingClientRect() || {}
+    const { scrollY } = global.window || {}
+    const yPos = Math.round(scrollY)
+    const containerTop = Math.abs(top + yPos) // calculating top & bottom positions (useful if user reloads page already scrolled)
+    const containerBottom = containerTop + height
+    const containerCenter = containerBottom - Math.floor(height / 2)
+
+    return {
+      containerCenter,
+      containerTop,
+      containerBottom,
+      height,
+    }
+  }, [])
 
   const animateScrollSnap = ({ from, to }) =>
-    !getSnapping() &&
     animate({
       from,
       to,
       duration,
       onPlay: () => setSnapping(true),
-      onUpdate: (scrollPos) => window?.scrollTo(0, scrollPos),
+      onUpdate: (scrollPos) => window?.scroll(0, scrollPos),
       onComplete: () => setSnapping(false),
     })
 
-  useEffect(() => {
-    const { top, bottom, height } = container.current.getBoundingClientRect()
-    const elementCenter = bottom - Math.floor(height / 2)
+  const onScrollStop = useCallback(() => {
+    const { containerCenter, containerTop, containerBottom } = getDimensions()
 
-    window.addEventListener('scroll', () => {
-      const { scrollY } = window
+    const yPos = global.window?.scrollY
 
-      const shouldScrollToElementTop =
-        scrollY > elementCenter && scrollY < bottom
-      const shouldScrollToElementBottom =
-        scrollY < elementCenter && scrollY > top
+    const shouldScrollToElementTop =
+      yPos > containerCenter && yPos < containerBottom && !getSnapping()
+    const shouldScrollToElementBottom =
+      yPos < containerCenter && yPos > containerTop && !getSnapping()
 
-      if (shouldScrollToElementTop)
-        animateScrollSnap({ from: scrollY, to: top })
-      if (shouldScrollToElementBottom)
-        animateScrollSnap({ from: scrollY, to: bottom })
-    })
+    if (shouldScrollToElementTop) {
+      console.log('scrolling top', getSnapping())
+      animateScrollSnap({ from: yPos, to: containerTop })
+    }
+    if (shouldScrollToElementBottom) {
+      console.log('scrolling bottom', getSnapping())
+      animateScrollSnap({ from: yPos, to: containerBottom })
+    }
   }, [])
+
+  useScrollStopped({ onScrollStop, track: snapping })
 }
 
 export default useScrollSnap

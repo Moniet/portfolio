@@ -1,8 +1,7 @@
-import Box from '../../lib/Box'
+import Box from '../../library/Box'
 
 const PageWrapper = (props) => (
   <Box
-    position="relative"
     py={['0', '5%', 'min(5%, 40px)']}
     px={['1rem', '2rem', 'min(10%, 100px)']}
     m="auto"

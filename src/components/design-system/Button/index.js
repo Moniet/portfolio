@@ -5,7 +5,7 @@ import { layout, margin } from 'styled-system'
 const Button = styled.button`
   ${layout}
   ${margin}
-  min-width: 200px;
+  min-width: 150px;
   padding: ${themeGet('space.xs')};
   background: ${themeGet('colors.text')};
   color: ${themeGet('colors.bg')};
@@ -13,6 +13,7 @@ const Button = styled.button`
   border-radius: ${themeGet('radii.sm')};
   outline: none;
   cursor: pointer;
+  font-size: ${themeGet('fontSizes.sm')};
   &:active {
     transform: scale(0.98);
     opacity: 0.95;

@@ -1,13 +1,13 @@
-import styled from '@emotion/styled'
-import { themeGet } from '@styled-system/theme-get'
-import { margin } from 'styled-system'
-import Flex from '../../lib/Flex'
-import Grid from '../../lib/Grid'
-import MarginProvider from '../../lib/MarginProvider'
+import Flex from '@/library/Flex'
+import MarginProvider from '@/library/MarginProvider'
+import { useRouter } from 'next/router'
 import Logo from '../Logo'
 import NavLink from './NavLink'
 
 const Nav = () => {
+  const isHomePage = ({ page }) => !page
+  const isWorkPage = ({ page }) => page === 'work'
+
   return (
     <Flex
       as="nav"
@@ -18,14 +18,18 @@ const Nav = () => {
     >
       <Logo />
       <MarginProvider ml={['0', '0', 'xs', 'sm', , 'md']}>
-        <NavLink href={'/'}>Home</NavLink>
-        <NavLink href={'#my-work'} passHref>
-          Work
+        <NavLink href={'/'} scroll={false}>
+          Home
+        </NavLink>
+        <NavLink href={'/work'}>Work</NavLink>
+        <NavLink
+          href="https://dev.to/moniet"
+          active={isWorkPage}
+          scroll={false}
+        >
+          Blogs
         </NavLink>
         <NavLink href={'/resume'}>Resume</NavLink>
-        <NavLink href={'#contact-work'} passHref>
-          Contact
-        </NavLink>
       </MarginProvider>
     </Flex>
   )

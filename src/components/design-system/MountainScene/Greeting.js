@@ -4,8 +4,13 @@ import { useEffect, useRef, useState } from 'react'
 import { animate } from 'popmotion'
 
 const Svg = styled.svg`
-  height: fit-content;
+  height: 100%;
   width: 100%;
+  min-width: 100%;
+
+  text {
+    pointer-events: none;
+  }
 `
 
 const Greeting = () => {
@@ -36,7 +41,7 @@ const Greeting = () => {
       <g id="intro" transform="translate(10.023 -167.029)">
         <path
           id="intro_text_bg"
-          data-name="intro text bg"
+          data-name="intro-text-bg"
           d="M252.053-56.565c30.082,7.668,46.6,47.778,67.833,87.593,21.529,39.815,47.483,79.63,47.188,118.855-.59,39.225-27.428,78.155-64.883,90.542-37.75,12.387-85.823-1.475-124.753,4.719-38.635,6.488-68.422,33.032-101.159,38.045-33.032,5.309-69.012-11.207-98.5-37.455s-52.5-62.524-46.3-96.145c5.9-33.326,40.994-64,61.049-99.095,20.055-34.8,25.069-73.731,46.6-85.233,21.235-11.8,58.985,3.834,99.39-.59S222.266-64.528,252.053-56.565Z"
           transform="translate(60.544 226.131)"
           fill="#fff"

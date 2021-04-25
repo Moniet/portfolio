@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react'
-import PageWrapper from '../components/design-system/PageWrapper'
 import GlobalStyle from '../styles/GlobalStyle'
+import Head from 'next/head'
 import Reset from '../styles/Reset'
 import theme from '../styles/theme'
 

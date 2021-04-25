@@ -1,10 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css, Global, useTheme } from '@emotion/react'
-import { themeGet } from '@styled-system/theme-get'
-
-const background = (props) => css`
-  background: ${themeGet('colors.bg')(props)};
-`
 
 const GlobalStyle = () => {
   const theme = useTheme()
@@ -16,7 +11,7 @@ const GlobalStyle = () => {
           src: url('/fonts/Pacifico-Regular.ttf') format(truetype);
           font-family: 'Pacifico';
           font-style: normal;
-          font-weight: 400;
+          font-weight: bold;
           font-display: swap;
         }
         @font-face {
@@ -42,14 +37,16 @@ const GlobalStyle = () => {
         }
 
         html {
-          font-size: 16px;
+          font-size: 100%;
         }
 
         body {
           font-family: 'Karla', sans-serif;
           font-weight: 400;
           line-height: 1.75;
-          background: ${theme.bg};
+          /* font-kerning: normal; */
+          /* font-feature-settings: 'kern', 'liga', 'clig', 'calt'; */
+          background: ${theme.colors.bg};
         }
 
         p {
@@ -62,7 +59,7 @@ const GlobalStyle = () => {
         h4,
         h5 {
           margin: 3rem 0 1.38rem;
-          font-family: 'Pacifico', sans-serif;
+          font-family: 'Pacifico', cursive;
           font-weight: 400;
           line-height: 1.3;
         }

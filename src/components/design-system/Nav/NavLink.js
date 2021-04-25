@@ -1,13 +1,11 @@
-import { ThemeProvider, useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { typography } from 'styled-system'
 import themeGet from '@styled-system/theme-get'
-import Box from '../../lib/Box'
+import Text from '../Text'
+import { useEffect, useState } from 'react'
 
-const A = styled(Box)`
-  ${typography}
+const A = styled(Text)`
   position: relative;
   text-decoration: none;
   text-transform: lowercase;
@@ -31,6 +29,7 @@ const A = styled(Box)`
     border-radius: 20px;
     transform: ${({ active }) =>
       active ? 'translate(0)' : 'translate(-20px)'};
+    transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
   }
 
   &:hover {
@@ -43,16 +42,22 @@ const A = styled(Box)`
 `
 
 const NavLink = (props) => {
-  const { children, href } = props
-  const { pathname, query } = useRouter()
-  const linkIsActive = pathname.includes(href)
+  const { children, href, isActive } = props
+  const {
+    pathname,
+    query: { page },
+    isReady
+  } = useRouter()
+  const isActiveDefault =
+    (pathname.includes(href) && href !== '/') ||
+    (pathname === '/' && href === '/')
 
   return (
-    <Link href={href} {...props} fontSize="md">
+    <Link href={href} scroll={false} passHref>
       <A
-        as="a"
-        active={linkIsActive}
         {...props}
+        as="a"
+        active={isActive ?? isActiveDefault}
         fontSize={['xxs', '', 'xs', 'xs', 'sm', 'md']}
       >
         {children}

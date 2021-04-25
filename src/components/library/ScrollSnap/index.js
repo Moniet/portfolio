@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useRef, memo } from 'react'
 import useScrollSnap from './useScrollSnap'
 
 const ScrollSnap = ({ children, duration }) => {
   const container = useRef(null)
+
   useScrollSnap({
     container,
     animation: {
@@ -13,4 +14,4 @@ const ScrollSnap = ({ children, duration }) => {
   return <div ref={container}>{children}</div>
 }
 
-export default ScrollSnap
+export default memo(ScrollSnap)
