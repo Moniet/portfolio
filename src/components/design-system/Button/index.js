@@ -22,6 +22,14 @@ const Button = styled.button`
     background: ${themeGet('colors.secondary')};
   }
 
+  &:disabled {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 415px) {
+    width: 100%;
+  }
+
   transition: opacity 0.2s ease, transform 0.2s ease;
 `
 export default Button
