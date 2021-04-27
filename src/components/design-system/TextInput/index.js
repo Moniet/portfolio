@@ -43,7 +43,8 @@ const TextInput = ({
   isValid,
   label = '',
   name = '',
-  placeholder = ''
+  placeholder = '',
+  required = false
 }) => {
   const [blurred, setBlurred] = useState(false)
   const textarea = type === 'textarea'
@@ -62,6 +63,7 @@ const TextInput = ({
         onFocus={() => isValid && setBlurred(false)}
         placeholder={placeholder}
         name={name}
+        required={required}
       />
       {blurred && !isValid && <Error>{error}</Error>}
     </label>

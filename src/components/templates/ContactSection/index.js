@@ -5,19 +5,26 @@ import Text from '@/design-system/Text'
 import PageWrapper from '@/design-system/PageWrapper'
 import Grid from '@/library/Grid'
 import Spacer from '@/library/Spacer'
+import Button from '@/design-system/Button'
 const { default: TextInput } = require('@/design-system/TextInput')
 const { default: Box } = require('@/library/Box')
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({})
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    setFormData()
+  }
+
   return (
     <div css={{ scrollSnapAlign: 'start' }}>
       <Box bg="bg" boxShadow="page" borderRadius="lg">
         <PageWrapper minHeight="fit-content">
-          <Spacer pb="md" />
           <Text as="h1" fontSize="gigantic">
-            Contact
+            contact
           </Text>
           <Text>
             <strong>
@@ -30,9 +37,10 @@ const ContactSection = () => {
             onChange={(e) =>
               setFormData({ ...formData, [e.target.name]: e.target.value })
             }
+            onSubmit={(e) => handleSubmit(e)}
           >
             <Grid
-              gridTemplateColumns="repeat(auto-fill, min(100%, 300px))"
+              gridTemplateColumns="repeat(auto-fill, min(100%, 350px))"
               gridTemplateRows="auto"
               gridGap="md"
               width="100%"
@@ -43,10 +51,12 @@ const ContactSection = () => {
                 label="name"
                 placeholder="e.g 'Com Truise'"
                 error="please include your name"
+                required
               />
               <TextInput
-                isValid={/\w+\@\w+\.\w+/.test(formData.email)}
-                name="emails"
+                type="email"
+                isValid={formData.email}
+                name="email"
                 label="email"
                 error="please include your email"
                 placeholder="sample@email.com"
@@ -64,6 +74,9 @@ const ContactSection = () => {
                 />
               </Grid>
             </Grid>
+            <Box mt="md">
+              <Button>send</Button>
+            </Box>
           </form>
           <Spacer pb="md" />
         </PageWrapper>
