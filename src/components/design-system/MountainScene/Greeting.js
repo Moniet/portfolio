@@ -26,7 +26,7 @@ const Greeting = () => {
       duration: 500,
       onUpdate: rotateHand,
       onPlay: () => setAnimationRunning(true),
-      onComplete: () => setAnimationRunning(false),
+      onComplete: () => setAnimationRunning(false)
     })
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const Greeting = () => {
               and i 😍 developing{' '}
             </tspan>
             <tspan x="0" y="106">
-              beautiful UIs
+              UIs
             </tspan>
           </text>
         </g>
