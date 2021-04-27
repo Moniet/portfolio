@@ -18,9 +18,14 @@ const MyWorkSection = ({ workThumbnails = [] }) => {
           my work
         </Text>
 
-        {workThumbnails.map((metadata) => (
+        {workThumbnails.map((metadata, i) => (
           <>
-            <Work open={false} metadata={metadata} slug={metadata.slug} />
+            <Work
+              key={i}
+              open={false}
+              metadata={metadata}
+              slug={metadata.slug}
+            />
             {/* <Spacer pb="lg" /> */}
           </>
         ))}
