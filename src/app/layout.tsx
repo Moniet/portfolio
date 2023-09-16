@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-black`}>
         <Nav />
-        <div className="mx-auto w-full max-w-[1600px] pb-[80px] z-1">
+        <div className="mx-auto w-full max-w-[1600px] pb-[80px] z-1 relative">
           {children}
         </div>
       </body>
