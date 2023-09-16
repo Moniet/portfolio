@@ -17,7 +17,7 @@ import CircleCursor from "@/components/CustomCursor"
 export default function Home() {
   return (
     <main>
-      <div className="flex min-h-screen w-full justify-start p-4 bg-black gap-4 flex-wrap mx-auto">
+      <div className="flex min-h-screen w-full justify-start px-4 bg-black gap-4 flex-wrap mx-auto z-1">
         <AboutMeSection />
         <MyStackSection />
         <WorkExperienceSection />
