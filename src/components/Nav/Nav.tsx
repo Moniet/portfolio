@@ -13,7 +13,7 @@ const Link = ({ href, children }: { href: string; children: ReactNode }) => {
 
 const Nav = () => {
   return (
-    <div className="w-full sticky top-0 left-0 -z-[1]">
+    <div className="w-full sticky top-0 left-0 z-[0]">
       <nav className="h-full flex flex-col sm:flex-row gap-4 items-center w-full  mt-4 rounded-lg  py-8 px-4 text-neutral-400 justify-between">
         <div className="text-2xl text-gray-300 text-md">
           <h1
