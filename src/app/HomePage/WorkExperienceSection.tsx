@@ -1,4 +1,4 @@
-import { CardContainer } from "@/components/Card"
+import { CardContainer, CardHeader } from "@/components/Card"
 import React, { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import classnames from "classnames"
@@ -294,11 +294,13 @@ const WorkExperienceItem = ({
               duration: 1,
             }}
             className={classnames(
-              "bg-red-500  text-white text-sm font-light px-2 py-1 text-center rounded-full absolute top-0 drop-shadow-md -translate-y-2/4 right-0 translate-x-2/4 w-[32px] h-[32px] flex"
+              "bg-red-500  text-white text-sm font-light px-2 py-1 text-center rounded-full absolute top-0 drop-shadow-md -translate-y-2/4 right-0 translate-x-2/4 w-[32px] h-[32px] flex items-center justify-center"
             )}
             onClick={() => handleShowMore()}
           >
-            <RxCross2 size={20} className="m-auto" />
+            <span className="pointer-events-none w-fit h-fit flex m-auto">
+              <RxCross2 size={20} />
+            </span>
           </motion.button>
         )}
       </motion.div>
@@ -329,9 +331,7 @@ const WorkExperienceSection = () => {
         "sm:w-2/4 w-full flex-1 flex-col w-autoflex-wrap items-center justify-start relative max-h-fit min-w-[280px] sm:min-w-[500px]"
       }
     >
-      <h3 className="text-gray-300 text-2xl mb-8 font-medium tracking-wider uppercase py-8">
-        Work Experience
-      </h3>
+      <CardHeader>Work Experience</CardHeader>
       <div className="flex flex-wrap gap-4 justify-center w-auto">
         {items
           .filter((item) => item.id !== selected)

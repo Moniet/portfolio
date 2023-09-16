@@ -49,7 +49,7 @@ const AboutMeSection = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: [0, 1] }}
       transition={{ duration: 0.5 }}
-      className="flex flex-auto justify-center"
+      className="flex-auto"
     >
       <CardContainer className="w-full h-full flex-col flex-auto min-w-ft p-4 sm:p8 items-center justify-center text-gray-300">
         <div className="flex flex-col gap-4 items-center justify-center">
@@ -115,7 +115,7 @@ const AboutMeSection = () => {
             download
             className="px-3 py-2 rounded text-sm text-gray-300 bg-neutral-800 flex items-center hover:bg-blue-800 transition-colors duration-300"
           >
-            <span className="inline-block mr-2 -mb-[1px]">
+            <span className="inline-block mr-2 -mb-[1px] pointer-events-none">
               <FaArrowDown size={12} />
             </span>
             Download Resume

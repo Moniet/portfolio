@@ -1,6 +1,7 @@
-import { CardContainer } from "@/components/Card"
+import { CardContainer, CardHeader } from "@/components/Card"
 import React, { useState } from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const projects = [
   {
@@ -33,10 +34,16 @@ type WorkItem = (typeof projects)[0]
 
 const WorkItem = ({ banner, title, summary, url }: WorkItem) => {
   return (
-    <a href={url} className="flex-auto">
+    <a href={url} className="flex-auto max-w-[300px]">
       <div className="flex flex-col border border-zinc-800 rounded-xl h-full overflow-hidden bg-[#0f0e0e]">
-        <div className="p-4 rounded-md overflow-hidden">
-          <img className="w-full h-32 object-cover rounded-xl" src={banner} />
+        <div className="p-4 rounded-md overflow-hidden ">
+          <Image
+            alt={`Visual for ${title} project : ${summary}`}
+            width={1920}
+            height={1080}
+            className="w-full h-38 sm:h-32  object-cover rounded-xl border border-zinc-800 drop-shadow-lg"
+            src={banner}
+          />
         </div>
         <div className="flex flex-col pl-5 pb-4">
           <p className="text-gray-300 text-sm tracking-wider">{title}</p>
@@ -59,9 +66,7 @@ const MyWorkSection = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 3.2, duration: 1 } }}
     >
-      <h2 className="text-2xl font-medium text-gray-300 tracking-widest text-center my-8 uppercase">
-        Notable Projects
-      </h2>
+      <CardHeader>Notable Projects</CardHeader>
       <motion.div
         className="flex gap-4 justify-center items-strech flex-wrap"
         layout

@@ -1,4 +1,4 @@
-import { CardContainer } from "@/components/Card"
+import { CardContainer, CardHeader } from "@/components/Card"
 import React from "react"
 import { motion } from "framer-motion"
 import {
@@ -121,9 +121,7 @@ const MyStackSection = () => {
     >
       <CardContainer className="min-w-fit w-full flex-col flex-auto items-center justify-start gap-8 h-full max-h-fit">
         <div>
-          <h2 className="text-2xl text-gray-300 font-medium tracking-wider flex items-center uppercase py-8">
-            Technology I use
-          </h2>
+          <CardHeader>Technology I use</CardHeader>
         </div>
         <ul className="flex gap-2 flex-wrap max-w-lg">
           {stackList.map((data, i) => (
