@@ -332,7 +332,7 @@ const WorkExperienceSection = () => {
       }
     >
       <CardHeader>Work Experience</CardHeader>
-      <div className="flex flex-wrap gap-4 justify-center w-auto">
+      <div className="flex flex-wrap gap-4 justify-center w-auto pt-4">
         {items
           .filter((item) => item.id !== selected)
           .map((item) => (

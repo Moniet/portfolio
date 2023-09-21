@@ -119,7 +119,7 @@ const MyStackSection = () => {
       transition={{ delay: 1 }}
       className="flex-1 min-w-fit"
     >
-      <CardContainer className="min-w-fit w-full flex-col flex-auto items-center justify-start gap-8 h-full max-h-fit">
+      <CardContainer className="min-w-fit w-full flex-col flex-auto items-center justify-start gap-4 h-full max-h-fit">
         <div>
           <CardHeader>Technology I use</CardHeader>
         </div>
