@@ -5,6 +5,13 @@ import Image from "next/image"
 
 const projects = [
   {
+    banner:
+      "https://pub-b7c7de69b6d641409d911c7e3fe4734f.r2.dev/instaapply-og.jpg",
+    title: "InstaApply",
+    summary: "Suite of tools making job hunting way easier!",
+    url: "https://www.instaapply.co",
+  },
+  {
     banner: "/blocs-dark.png",
     title: "Blocs Widgets",
     summary: "Notion widgets for habit tracking",
