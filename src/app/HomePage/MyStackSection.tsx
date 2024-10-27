@@ -1,25 +1,22 @@
 import { CardContainer, CardHeader } from "@/components/Card"
 import React from "react"
 import { motion } from "framer-motion"
+import { RiBearSmileLine } from "react-icons/ri"
 import {
-  BiHeart,
   BiLogoFigma,
   BiLogoNodejs,
-  BiLogoPostgresql,
   BiLogoReact,
   BiLogoRedux,
   BiLogoTailwindCss,
   BiLogoTypescript,
-  BiSolidHeart,
-  BiTestTube,
 } from "react-icons/bi"
 import {
   SiCypress,
-  SiExpress,
-  SiMysql,
+  SiPostgresql,
   SiStorybook,
   SiTestinglibrary,
 } from "react-icons/si"
+import { FaFire } from "react-icons/fa"
 
 const stackList = [
   {
@@ -63,14 +60,14 @@ const stackList = [
     Icon: BiLogoNodejs,
   },
   {
-    label: "Express.js",
-    color: "white",
-    Icon: SiExpress,
+    label: "Hono.js",
+    color: "tomato",
+    Icon: FaFire,
   },
   {
-    label: "MySQL",
+    label: "Postgres",
     color: "#ddcc14",
-    Icon: SiMysql,
+    Icon: SiPostgresql,
   },
   {
     label: "Cypress",
@@ -81,6 +78,11 @@ const stackList = [
     label: "React Testing Library",
     color: "red",
     Icon: SiTestinglibrary,
+  },
+  {
+    label: "Zustand | State Library",
+    color: "violet",
+    Icon: RiBearSmileLine,
   },
 ]
 

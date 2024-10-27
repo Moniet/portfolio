@@ -20,7 +20,7 @@ const Avatar = () => {
           height={300}
           src={"/avatar.png"}
           alt="Profile Picture"
-          className="rounded-full h-full h-full object-cover mt-1"
+          className="rounded-full h-full object-cover mt-1"
         />
       </div>
     </motion.div>
@@ -100,7 +100,7 @@ const AboutMeSection = () => {
               <br />
               I&#39;m a full-stack developer with expertise in{" "}
               <InlineIcon Icon={BiLogoReact} /> React development <wbr />
-              and a high passion for the{" "}
+              and a deep passion for the{" "}
               <InlineIcon
                 Icon={BiLogoJavascript}
                 className="text-yellow-500"

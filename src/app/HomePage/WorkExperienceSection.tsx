@@ -8,6 +8,26 @@ import { RxCross2 } from "react-icons/rx"
 
 const experienceList = [
   {
+    id: "1234",
+    role: "Founder",
+    location: "Remote",
+    company: "InstaApply",
+    logo: "/instaapply-logo.png",
+    dates: {
+      from: "2023-11-01",
+      to: "Present",
+    },
+    responsibilities: [
+      "Leading end-to-end product development from ideation to deployment",
+      "Conducting comprehensive user research to shape product roadmap",
+      "Spearheading UX/UI design decisions and creating high-fidelity mockups in Figma",
+      "Implementing core product features using modern React.js patterns",
+      "Managing full software development lifecycle as sole developer",
+      "Building and maintaining product infrastructure on AWS",
+    ],
+    summary: "",
+  },
+  {
     id: "123",
     role: "Senior Full-Stack Developer",
     location: "Berlin, Germany",
@@ -18,12 +38,12 @@ const experienceList = [
       to: "2023-01-01",
     },
     responsibilities: [
-      "Next.js Developement",
-      "ReactNative development of gavel mobile app",
-      "Code Reviews",
-      "Contributing to design discussions",
-      "Contributing to app architecture",
-      "DevOps with GithubActions + Detox automation",
+      "Developed and maintained complex React Native mobile applications",
+      "Implemented pixel-perfect UI components from Figma designs",
+      "Led implementation of automated testing with Detox for React Native",
+      "Architected and built scalable Next.js front-end solutions",
+      "Conducted thorough code reviews and provided mentorship to junior developers",
+      "Collaborated on technical architecture decisions for greenfield projects",
     ],
     summary: "",
   },
@@ -38,12 +58,12 @@ const experienceList = [
       to: "2023-01-01",
     },
     responsibilities: [
-      "React.js Development",
-      "Collaborating with design & Product Managers for refinement",
-      "Code Reviews & Mentorship",
-      "Automating deployments for Design System / web app (CircleCI)",
-      "Company-wide front-end architecture",
-      "Maintaining high impact internal app for sales & customer teams",
+      "Engineered high-performance React components from Figma specifications",
+      "Implemented comprehensive testing strategy using Cypress",
+      "Established CI/CD pipelines using CircleCI for automated deployments",
+      "Led code review processes and mentored junior team members",
+      "Contributed to architectural decisions for front-end infrastructure",
+      "Optimized application performance and developer experience",
     ],
     summary: "",
   },
@@ -58,12 +78,12 @@ const experienceList = [
       to: "2023-01-01",
     },
     responsibilities: [
-      "Next.js Developement",
-      "ReactNative development of gavel mobile app",
-      "Code Reviews",
-      "Contributing to design discussions",
-      "Contributing to app architecture",
-      "DevOps setup with GithubActions and automated testing for ReactNative with Detox",
+      "Collaborated with UX team to implement and improve user interfaces",
+      "Built responsive React applications from Figma designs",
+      "Integrated complex payment processing systems and third-party APIs",
+      "Participated in design reviews and provided technical feedback",
+      "Improved front-end performance and accessibility",
+      "Maintained high code quality through thorough testing and documentation",
     ],
     summary: "",
   },
@@ -78,12 +98,12 @@ const experienceList = [
       to: "2023-01-01",
     },
     responsibilities: [
-      "Next.js Developement",
-      "ReactNative development of gavel mobile app",
-      "Code Reviews",
-      "Contributing to design discussions",
-      "Contributing to app architecture",
-      "DevOps setup with GithubActions and automated testing for ReactNative with Detox",
+      "Created interactive data visualizations using D3.js",
+      "Built responsive layouts using BEM CSS methodology",
+      "Implemented state management solutions with React and Redux",
+      "Developed RESTful API integrations for front-end applications",
+      "Converted Zeplin designs into pixel-perfect React components",
+      "Optimized application performance and bundle size",
     ],
     summary: "",
   },
@@ -98,12 +118,12 @@ const experienceList = [
       to: "2023-01-01",
     },
     responsibilities: [
-      "Next.js Developement",
-      "ReactNative development of gavel mobile app",
-      "Code Reviews",
-      "Contributing to design discussions",
-      "Contributing to app architecture",
-      "DevOps setup with GithubActions and automated testing for ReactNative with Detox",
+      "Developed cross-platform applications using React and React Native",
+      "Architected and deployed applications on AWS infrastructure (S3/EC2/CloudFront)",
+      "Built scalable REST APIs using Node.js and MongoDB",
+      "Implemented responsive designs from Figma specifications",
+      "Managed full-stack feature development from design to deployment",
+      "Optimized cloud infrastructure for cost and performance",
     ],
     summary: "",
   },
@@ -118,16 +138,24 @@ const experienceList = [
       to: "2023-11-01",
     },
     responsibilities: [
-      "Next.js Developement",
-      "ReactNative development of gavel mobile app",
-      "Code Reviews",
-      "Contributing to design discussions",
-      "Contributing to app architecture",
-      "DevOps setup with GithubActions and automated testing for ReactNative with Detox",
+      "Collaborated in an agile team environment on full-stack applications",
+      "Developed and maintained REST APIs using Node.js and MongoDB",
+      "Created user interface designs using Adobe XD",
+      "Built responsive React components and integrated with backend services",
+      "Participated in code reviews and team planning sessions",
+      "Gained experience with git workflow and collaborative development",
     ],
     summary: "",
   },
 ]
+
+const formatDate = (date: string) =>
+  date.toLowerCase().includes("present")
+    ? "Present"
+    : Intl.DateTimeFormat("en", {
+        month: "short",
+        year: "numeric",
+      }).format(new Date(date))
 
 const Overlay = ({ onClick }: { onClick: () => void }) => {
   return (
@@ -140,23 +168,16 @@ const Overlay = ({ onClick }: { onClick: () => void }) => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: "rgba(0,0,0,0.5)",
-        backdropFilter: "blur(10px)",
+        backgroundColor: "rgba(25,25,25,0.8)",
       }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{
-        opacity: 0,
-      }}
+      exit={{ opacity: 0 }}
     ></motion.div>
   )
 }
 
-const formatDate = (date: string) =>
-  Intl.DateTimeFormat("en", {
-    month: "short",
-    year: "numeric",
-  }).format(new Date(date))
+// ... (formatDate function remains the same)
 
 const WorkExperienceItem = ({
   company,
@@ -176,16 +197,10 @@ const WorkExperienceItem = ({
   const [showDetails, setShowDetails] = useState(false)
 
   useEffect(() => {
-    let timer: NodeJS.Timeout
-
     if (isOpen) {
       setShowDetails(true)
     } else {
       setShowDetails(false)
-    }
-
-    return () => {
-      clearTimeout(timer)
     }
   }, [isOpen])
 
@@ -193,34 +208,20 @@ const WorkExperienceItem = ({
     <div
       onClick={() => (isOpen ? null : handleShowMore())}
       className={classnames(
-        "max-sm:w-11/12 flex-1 min-w-fit cursor-pointer drop-shadow-lg z-1",
+        "max-sm:w-11/12 flex-1 cursor-pointer drop-shadow-lg z-1",
         isOpen
-          ? "-translate-y-2/4 -translate-x-2/4 fixed top-2/4 left-2/4 cursor-default z-modal"
-          : ""
+          ? "-translate-y-2/4 -translate-x-2/4 fixed top-2/4 left-2/4 cursor-default z-modal md:w-[500px]"
+          : "min-w-fit"
       )}
     >
       <motion.div
         layoutId={id}
-        layout
-        initial={{
-          opacity: 0,
-        }}
-        exit={{
-          opacity: 0,
-          transition: {
-            duration: 0.5,
-          },
-        }}
-        animate={{
-          opacity: 1,
-          translateY: isOpen ? "-50%" : "0%",
-        }}
-        transition={{
-          duration: 1.5,
-          type: "spring",
-        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, translateY: isOpen ? "-50%" : "0%" }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5, type: "spring" }}
         style={{ transition: "border 0.1s ease" }}
-        className={`flex flex-col gap-2 items-start justify-center bg-[#0f0e0e] p-8 rounded-xl drop-shadow-lg flex-1 w-full flex-auto border ${
+        className={`flex flex-col gap-2 items-start justify-center bg-[#0f0e0e] p-8 rounded-xl drop-shadow-lg flex-1 w-full border ${
           isOpen
             ? "p-8 sm:w-fit border-neutral-800  hover:border-neutral-800"
             : "border-neutral-800 hover:border-neutral-600"
@@ -258,9 +259,8 @@ const WorkExperienceItem = ({
               layout
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{
-                duration: 2,
-              }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
               className="pt-2 mt-4 border-t-2  border-dotted border-zinc-800"
             >
               <motion.div className="text-lg font-medium text-white tracking-wider mt-4">
@@ -276,7 +276,7 @@ const WorkExperienceItem = ({
                       <span className="inline-block text-yellow-500 mr-2 sm:mt-[5px] mt-[3px]">
                         <FaAngleRight size={10} />
                       </span>
-                      <p>{text}</p>
+                      <p className="whitespace-pre-line">{text}</p>
                     </motion.li>
                   )
                 })}
@@ -290,9 +290,8 @@ const WorkExperienceItem = ({
             aria-label="Exit detail view"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{
-              duration: 1,
-            }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
             className={classnames(
               "bg-red-500  text-white text-sm font-light px-2 py-1 text-center rounded-full absolute top-0 drop-shadow-md -translate-y-2/4 right-0 translate-x-2/4 w-[32px] h-[32px] flex items-center justify-center"
             )}

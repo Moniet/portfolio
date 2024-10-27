@@ -6,6 +6,13 @@ import Image from "next/image"
 const projects = [
   {
     banner:
+      "https://pub-bee551b1560648b0a179631450d9adaa.r2.dev/ficus/ficus-og.png",
+    title: "ficus.fm",
+    summary: "An app for infinite lo-fi/ambient music streaming",
+    url: "https://www.ficus.fm",
+  },
+  {
+    banner:
       "https://pub-b7c7de69b6d641409d911c7e3fe4734f.r2.dev/instaapply-og.jpg",
     title: "InstaApply",
     summary: "Suite of tools making job hunting way easier!",
@@ -18,16 +25,16 @@ const projects = [
     url: "https://blocs.me",
   },
   {
+    banner: "/noise.webp",
+    title: "ReactNoise",
+    summary: "React lib for noisy textures",
+    url: "https://github.com/Moniet/react-noise",
+  },
+  {
     banner: "/framerlib.png",
     title: "FramerLib",
     summary: "Code Components for Framer",
     url: "https://framerlib.com",
-  },
-  {
-    banner: "/techjobs.png",
-    title: "TechJobMarkt",
-    summary: "A site for finding tech jobs in germany",
-    url: "https://techjobmarkt.de",
   },
   {
     banner: "/phoenix.png",
@@ -54,7 +61,7 @@ const WorkItem = ({ banner, title, summary, url }: WorkItem) => {
         </div>
         <div className="flex flex-col pl-5 pb-4">
           <p className="text-gray-300 text-sm tracking-wider">{title}</p>
-          <p className="text-sm text-gray-500 text-light tracking-wide">
+          <p className="text-xs text-gray-500 text-light tracking-wide">
             {summary}
           </p>
         </div>

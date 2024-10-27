@@ -8,6 +8,12 @@ const nextConfig = {
         port: "",
         pathname: "/*",
       },
+      {
+        protocol: "https",
+        hostname: "pub-bee551b1560648b0a179631450d9adaa.r2.dev",
+        port: "",
+        pathname: "/ficus/ficus-og.png",
+      },
     ],
   },
 }
