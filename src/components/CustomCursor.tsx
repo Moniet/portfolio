@@ -1,6 +1,6 @@
 import * as React from "react"
 import { createPortal } from "react-dom"
-import { motion, useMotionValue } from "framer-motion"
+import { motion, useMotionValue } from "motion/react"
 
 const useMousePosition = () => {
   const mouseX = useMotionValue(0)
@@ -46,7 +46,7 @@ type Props = {
 
 const CircleCursor = ({
   delay = 0.3,
-  size = 20,
+  size = 25,
   opacity = 1,
   opacityOnHover = 0.5,
   borderColor = "transparent",
@@ -79,20 +79,22 @@ const CircleCursor = ({
   return createPortal(
     <>
       <motion.div
-        className="fixed top-0 left-0 z-cursor pointer-events-none w-fit h-fit min-w-[10px] min-h-[10px] origin-center ease-out"
+        className="fixed top-0 left-0 z-cursor pointer-events-none w-fit h-fit min-w-[20px] min-h-[20px] origin-center ease-out "
         style={
           {
+            // filter: "subtract(100%)",
             x: mouseX,
             y: mouseY,
             scale: isHovering ? hoverScale : 1,
             transitionDuration: `${delay}s`,
+            transformOrigin: "center center",
             opacity: isHovering ? opacityOnHover : opacity,
           } as any
         }
       >
         <div className="w-max h-max -translate-x-2/4 -translate-y-2/4 pointer-events-none">
           <motion.div
-            className="pointer-events-none rounded-full"
+            className="pointer-events-none rounded-full backdrop-invert"
             style={
               {
                 x: 0,

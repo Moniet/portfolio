@@ -1,8 +1,10 @@
 import { CardContainer, CardHeader } from "@/components/Card"
 import React from "react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { RiBearSmileLine } from "react-icons/ri"
 import {
+  BiCode,
+  BiCodeAlt,
   BiLogoFigma,
   BiLogoNodejs,
   BiLogoReact,
@@ -16,7 +18,7 @@ import {
   SiStorybook,
   SiTestinglibrary,
 } from "react-icons/si"
-import { FaFire } from "react-icons/fa"
+import { FaCodeBranch, FaFileCode, FaFire, FaLaptopCode } from "react-icons/fa"
 
 const stackList = [
   {
@@ -46,7 +48,7 @@ const stackList = [
   },
   {
     label: "Figma",
-    color: "white",
+    color: "blue",
     Icon: BiLogoFigma,
   },
   {
@@ -56,7 +58,7 @@ const stackList = [
   },
   {
     label: "Node.js",
-    color: "yellow",
+    color: "green",
     Icon: BiLogoNodejs,
   },
   {
@@ -66,7 +68,7 @@ const stackList = [
   },
   {
     label: "Postgres",
-    color: "#ddcc14",
+    color: "#c00000",
     Icon: SiPostgresql,
   },
   {
@@ -105,33 +107,44 @@ const StackItem = ({ Icon, color, label, delay }: StackProps) => {
         delay,
         duration: 0.5,
       }}
-      className="flex px-3 py-2 rounded-md items-center justify-center gap-2 outline-1  outline  outline-zinc-800 text-slate-200 inline-block flex-auto h-fit w-fit max-h-fit"
+      className="px-4 py-3 rounded-md items-center  justify-center gap-1 bg-zinc-100 text-zinc-700 font-medium inline-flex flex-1 border-b-2  border-zinc-200"
     >
-      <Icon size={25} style={{ color }} />
-      <span className="text-xs font-light tracking-widest">{label}</span>
+      <Icon className="size-[30px] min-w-[30px]" style={{ color }} />
+      <span className="text-xs tracking-widest whitespace-nowrap">{label}</span>
     </motion.li>
   )
 }
 
 const MyStackSection = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1 }}
-      className="flex-1 min-w-fit"
-    >
-      <CardContainer className="min-w-fit w-full flex-col flex-auto items-center justify-start gap-4 h-full min-h-full max-h-fit">
-        <div>
-          <CardHeader>Technology I use</CardHeader>
-        </div>
-        <ul className="flex gap-2 flex-wrap max-w-lg">
-          {stackList.map((data, i) => (
-            <StackItem {...data} key={i} delay={1 + i / 10} />
-          ))}
-        </ul>
+    <div className="flex flex-col flex-1 gap-5">
+      <CardContainer className="flex">
+        <CardHeader className="m-auto flex items-center justify-center gap-3 py-2 rounded-xl w-fit text-center mx-auto text-zinc-900 text-xl font-medium">
+          <span className="text-zinc-900">
+            <BiCodeAlt size={25} />
+          </span>
+          <span className="text-zinc-900 drop-shadow-lg">my tech stack</span>
+        </CardHeader>
       </CardContainer>
-    </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="flex-1"
+      >
+        <CardContainer className="min-w-fit w-full flex-col flex-auto items-center justify-center h-full min-h-full max-h-fit">
+          <div
+            style={{ filter: "drop-shadow(1px 2px rgba(0,0,0,0))" }}
+            className="w-full"
+          ></div>
+          <ul className="flex gap-2 flex-wrap h-full max-w-lg justify-center">
+            {stackList.map((data, i) => (
+              <StackItem {...data} key={i} delay={1 + i / 10} />
+            ))}
+          </ul>
+        </CardContainer>
+      </motion.div>
+    </div>
   )
 }
 

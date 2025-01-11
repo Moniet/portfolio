@@ -10,7 +10,7 @@ const Paragraph = ({ className, children }: Props) => {
   return (
     <p
       className={classnames(
-        "text-sm sm:text-md text-gray-300 tracking-wider leading-8 ",
+        "text-sm sm:text-md text-zinc-900 tracking-wider leading-7 ",
         className
       )}
     >

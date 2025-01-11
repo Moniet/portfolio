@@ -1,10 +1,16 @@
 import { WithChildren } from "@/types/helpers/WithChildren"
 import React from "react"
 
-const CardHeader = ({ children }: WithChildren<{}>) => {
+const CardHeader = ({
+  children,
+  className,
+}: WithChildren<{ className?: string }>) => {
   return (
     <>
-      <h2 className="text-xl text-gray-300 tracking-widest text-center my-8 uppercase">
+      <h2
+        className={`text-2xl font-bold text-zinc-800 text-center capitalize tracking-wider ${className}`}
+        style={{ fontKerning: "normal" }}
+      >
         {children}
       </h2>
     </>

@@ -1,6 +1,6 @@
 import { CardContainer, CardHeader } from "@/components/Card"
 import React, { useState } from "react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import Image from "next/image"
 
 const projects = [
@@ -19,7 +19,7 @@ const projects = [
     url: "https://www.instaapply.co",
   },
   {
-    banner: "/blocs-dark.png",
+    banner: "/blocs.png",
     title: "Blocs Widgets",
     summary: "Notion widgets for habit tracking",
     url: "https://blocs.me",
@@ -48,22 +48,25 @@ type WorkItem = (typeof projects)[0]
 
 const WorkItem = ({ banner, title, summary, url }: WorkItem) => {
   return (
-    <a href={url} className="flex-auto max-w-[300px]">
-      <div className="flex flex-col border border-zinc-800 rounded-xl h-full overflow-hidden bg-[#0f0e0e]">
-        <div className="p-4 rounded-md overflow-hidden ">
-          <Image
-            alt={`Visual for ${title} project : ${summary}`}
-            width={1920}
-            height={1080}
-            className="w-full h-38 sm:h-32  object-cover rounded-xl border border-zinc-800 drop-shadow-lg"
-            src={banner}
-          />
+    <a href={url} className="w-full mx-auto sticky top-10 left-0 max-w-[500px]">
+      <div
+        className="flex flex-col border border-zinc-200 rounded-xl overflow-hidden bg-zinc-50 border-b-4 hover:border-zinc-400"
+        style={{ transition: "border-color 0.3s ease" }}
+      >
+        <div className="p-4">
+          <div className="rounded-md overflow-hidden w-full h-auto sm:h-[250px] border border-zinc-200">
+            <Image
+              alt={`Visual for ${title} project : ${summary}`}
+              width={1920}
+              height={1080}
+              className="w-full h-auto object-covers "
+              src={banner}
+            />
+          </div>
         </div>
         <div className="flex flex-col pl-5 pb-4">
-          <p className="text-gray-300 text-sm tracking-wider">{title}</p>
-          <p className="text-xs text-gray-500 text-light tracking-wide">
-            {summary}
-          </p>
+          <p className="text-zinc-900 text-sm tracking-wider">{title}</p>
+          <p className="text-xs text-zinc-900 tracking-wide">{summary}</p>
         </div>
       </div>
     </a>
@@ -80,9 +83,9 @@ const MyWorkSection = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 3.2, duration: 1 } }}
     >
-      <CardHeader>Notable Projects</CardHeader>
+      <CardHeader className="mb-5 mt-2">Notable Projects</CardHeader>
       <motion.div
-        className="flex gap-4 justify-center items-strech flex-wrap"
+        className="gap-4 flex-1 flex flex-col place-items-center"
         layout
       >
         {projects.map((item, i) => (

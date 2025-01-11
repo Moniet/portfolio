@@ -1,16 +1,22 @@
 import { CardContainer, CardHeader } from "@/components/Card"
-import React, { useEffect, useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import React, { useEffect, useRef, useState } from "react"
+import { AnimatePresence, motion, useInView } from "motion/react"
 import classnames from "classnames"
-import { BiSolidStar } from "react-icons/bi"
-import { FaAngleRight } from "react-icons/fa"
+import { BiBriefcase, BiCodeAlt, BiSolidStar } from "react-icons/bi"
+import {
+  FaAngleRight,
+  FaBriefcase,
+  FaLaptop,
+  FaLaptopCode,
+} from "react-icons/fa"
 import { RxCross2 } from "react-icons/rx"
+import { animate, stagger } from "motion"
 
 const experienceList = [
   {
-    id: "1234",
-    role: "Founder",
-    location: "Remote",
+    id: "instaapply",
+    role: "Founder & Full-Stack Developer",
+    location: "",
     company: "InstaApply",
     logo: "/instaapply-logo.png",
     dates: {
@@ -18,132 +24,111 @@ const experienceList = [
       to: "Present",
     },
     responsibilities: [
-      "Leading end-to-end product development from ideation to deployment",
-      "Conducting comprehensive user research to shape product roadmap",
-      "Spearheading UX/UI design decisions and creating high-fidelity mockups in Figma",
-      "Implementing core product features using modern React.js patterns",
-      "Managing full software development lifecycle as sole developer",
-      "Building and maintaining product infrastructure on AWS",
+      "Lead full-stack development & maintenance of chrome extension and website, achieving 100% uptime",
+      "Implemented SEO strategy that increased traffic by 10 times, with long tail keywords and on-page optimization",
+      "Researched & improved UX using DataDog + Clarity analytics, increasing landing page conversions by 30%",
     ],
     summary: "",
   },
   {
-    id: "123",
+    id: "gavel",
     role: "Senior Full-Stack Developer",
-    location: "Berlin, Germany",
+    location: "",
     company: "Gavel GmbH",
     logo: "/gavel.jpeg",
     dates: {
-      from: "2023-04-01",
-      to: "2023-01-01",
+      from: "2023-03-01",
+      to: "2023-09-01",
     },
     responsibilities: [
-      "Developed and maintained complex React Native mobile applications",
-      "Implemented pixel-perfect UI components from Figma designs",
-      "Led implementation of automated testing with Detox for React Native",
-      "Architected and built scalable Next.js front-end solutions",
-      "Conducted thorough code reviews and provided mentorship to junior developers",
-      "Collaborated on technical architecture decisions for greenfield projects",
+      "Lead Web and Mobile app development, implemented realtime APIs supporting 20K+ daily users with 99% uptime",
+      "Played a major role in product pivot, implementing complex interactions & animations for React Native application",
+      "Helped build Wordpress plugin which integrated Gavel's realtime bidding / selling application on WP websites",
     ],
     summary: "",
   },
   {
-    id: "456",
+    id: "comatch",
+    role: "Senior Front-end Engineer",
+    location: "",
+    company: "Comatch",
     logo: "/comatch.jpeg",
-    location: "Berlin, Germany",
-    role: "Senior Front-end Developer",
-    company: "Comatch GmbH",
     dates: {
-      from: "2023-04-01",
-      to: "2023-01-01",
+      from: "2021-11-01",
+      to: "2023-02-01",
     },
     responsibilities: [
-      "Engineered high-performance React components from Figma specifications",
-      "Implemented comprehensive testing strategy using Cypress",
-      "Established CI/CD pipelines using CircleCI for automated deployments",
-      "Led code review processes and mentored junior team members",
-      "Contributed to architectural decisions for front-end infrastructure",
-      "Optimized application performance and developer experience",
+      "Lead front-end development as part of the Contact team, provided mentorship & conducted detailed code reviews",
+      "Maintained company design system; introduced CI/CD automation with completely nullified conflicts & improved DX",
+      "Spearheaded changes company's front-end architecture while upgrading React (16-18); improved velocity by 2x",
     ],
     summary: "",
   },
   {
-    id: "213",
-    role: "Front-end Developer",
-    location: "New York (Remote)",
-    logo: "/climb.jpeg",
+    id: "climb-credit",
+    role: "Front-end Engineer",
+    location: "",
     company: "Climb Credit",
+    logo: "/climb.jpeg",
     dates: {
-      from: "2023-04-01",
-      to: "2023-01-01",
+      from: "2021-01-01",
+      to: "2021-10-01",
     },
     responsibilities: [
-      "Collaborated with UX team to implement and improve user interfaces",
-      "Built responsive React applications from Figma designs",
-      "Integrated complex payment processing systems and third-party APIs",
-      "Participated in design reviews and provided technical feedback",
-      "Improved front-end performance and accessibility",
-      "Maintained high code quality through thorough testing and documentation",
+      "Lead the development of the student loan application which processed millions of dollars of revenue in the first month",
+      "Integrated legacy 3rd party fin-tech APIs, modified source code to integrated it seamlessly with React",
+      "Introduced architecture patterns using Styled Components which improved front-end development velocity",
     ],
     summary: "",
   },
   {
-    id: "112",
+    id: "agara-labs",
     role: "Front-end Developer",
-    location: "Bangalore, India",
-    logo: "/agara.jpeg",
+    location: "",
     company: "Agara Labs",
+    logo: "/agara.jpeg",
     dates: {
-      from: "2023-04-01",
-      to: "2023-01-01",
+      from: "2020-03-01",
+      to: "2021-01-01",
     },
     responsibilities: [
-      "Created interactive data visualizations using D3.js",
-      "Built responsive layouts using BEM CSS methodology",
-      "Implemented state management solutions with React and Redux",
-      "Developed RESTful API integrations for front-end applications",
-      "Converted Zeplin designs into pixel-perfect React components",
-      "Optimized application performance and bundle size",
+      "Ownership of data-viz dashboard which helped customers understand how our AI was resolving customer-care issues",
+      "Visualizing millions of data-points with React & D3.js for large clients like Johnson & Johnson and P&G group",
+      "Maintained legacy front-ends using React, SASS and BEM methology",
     ],
     summary: "",
   },
   {
-    id: "412",
-    role: "Full-stack Developer",
-    location: "Bangalore, India",
-    logo: "/sugoi.jpeg",
+    id: "sugoi-labs",
+    role: "Full-stack Developer (front-end focus)",
+    location: "",
     company: "Sugoi Labs",
+    logo: "/sugoi.jpeg",
     dates: {
-      from: "2023-04-01",
-      to: "2023-01-01",
+      from: "2023-11-01",
+      to: "Present",
     },
     responsibilities: [
-      "Developed cross-platform applications using React and React Native",
-      "Architected and deployed applications on AWS infrastructure (S3/EC2/CloudFront)",
-      "Built scalable REST APIs using Node.js and MongoDB",
-      "Implemented responsive designs from Figma specifications",
-      "Managed full-stack feature development from design to deployment",
-      "Optimized cloud infrastructure for cost and performance",
+      "Developed & Designed Full-Stack JavaScript + React Native apps for customers; delivered client MVPs in 1 month",
+      "Took product ownership as well as the front-end for company tool. Implemented complex state logic with Redux",
+      "Took ownership of maintaining AWS EC2 instances as well as integrating Amazon Rekognition AI into client MVPs",
     ],
     summary: "",
   },
   {
-    id: "4122",
-    role: "Software Internship",
-    location: "Online",
+    id: "chingu",
+    role: "Internship",
+    location: "",
+    company: "Chingu Labs",
     logo: "/chingu.jpeg",
-    company: "Chingu Voyage",
     dates: {
-      from: "2019-09-01",
-      to: "2023-11-01",
+      from: "2020-08-01",
+      to: "2020-11-01",
     },
     responsibilities: [
-      "Collaborated in an agile team environment on full-stack applications",
-      "Developed and maintained REST APIs using Node.js and MongoDB",
-      "Created user interface designs using Adobe XD",
-      "Built responsive React components and integrated with backend services",
-      "Participated in code reviews and team planning sessions",
-      "Gained experience with git workflow and collaborative development",
+      "Developed & Designed Full-Stack JavaScript + React Native apps for customers; delivered client MVPs in 1 month",
+      "Took product ownership as well as the front-end for company tool. Implemented complex state logic with Redux",
+      "Took ownership of maintaining AWS EC2 instances as well as integrating Amazon Rekognition AI into client MVPs",
     ],
     summary: "",
   },
@@ -168,7 +153,7 @@ const Overlay = ({ onClick }: { onClick: () => void }) => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: "rgba(25,25,25,0.8)",
+        backgroundColor: "rgba(55,55,55,0.5)",
       }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -178,6 +163,21 @@ const Overlay = ({ onClick }: { onClick: () => void }) => {
 }
 
 // ... (formatDate function remains the same)
+
+const fadeIn = {
+  hidden: {
+    y: 10,
+    opacity: 0,
+  },
+  enter: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      duration: 2,
+    },
+  },
+}
 
 const WorkExperienceItem = ({
   company,
@@ -189,9 +189,11 @@ const WorkExperienceItem = ({
   location,
   dates,
   isOpen = false,
+  className = "",
 }: (typeof experienceList)[0] & {
   selectItem: (arg: string | null) => void
   isOpen?: boolean
+  className?: string
 }) => {
   const handleShowMore = () => (isOpen ? selectItem(null) : selectItem(id))
   const [showDetails, setShowDetails] = useState(false)
@@ -205,13 +207,14 @@ const WorkExperienceItem = ({
   }, [isOpen])
 
   return (
-    <div
+    <motion.div
       onClick={() => (isOpen ? null : handleShowMore())}
       className={classnames(
-        "max-sm:w-11/12 flex-1 cursor-pointer drop-shadow-lg z-1",
+        "max-sm:w-11/12 flex-1 cursor-pointer z-1",
         isOpen
           ? "-translate-y-2/4 -translate-x-2/4 fixed top-2/4 left-2/4 cursor-default z-modal md:w-[500px]"
-          : "min-w-fit"
+          : "min-w-fit",
+        className
       )}
     >
       <motion.div
@@ -220,35 +223,37 @@ const WorkExperienceItem = ({
         animate={{ opacity: 1, translateY: isOpen ? "-50%" : "0%" }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
-        style={{ transition: "border 0.1s ease" }}
-        className={`flex flex-col gap-2 items-start justify-center bg-[#0f0e0e] p-8 rounded-xl drop-shadow-lg flex-1 w-full border ${
+        style={{
+          transition: "border 0.3s ease, box-shadow 0.2s ease",
+        }}
+        className={`flex flex-col gap-2 items-start justify-center p-4 rounded-lg flex-1 w-full border ${
           isOpen
-            ? "p-8 sm:w-fit border-neutral-800  hover:border-neutral-800"
-            : "border-neutral-800 hover:border-neutral-600"
+            ? "p-8 bg-zinc-100 sm:w-fit border-zinc-200 shadow-lg"
+            : "border-zinc-200 bg-zinc-100 hover:border-zinc-400 h-full [box-shadow:0px_3px_0px] text-zinc-200 hover:text-zinc-400 hover:[box-shadow:0px_5px_0px]"
         }`}
       >
-        <motion.div className="flex gap-3 justify-start items-center" layout>
+        <motion.div className="flex gap-2 justify-start items-center" layout>
           <motion.img
             layout
             src={logo}
-            className="w-10 h-10 rounded-md border-1 border-zinc-400"
+            className="w-7 h-7 aspect-square rounded-md border border-zinc-200"
           />
-          <motion.h2 className="text-md  text-gray-300 text-left" layout>
+          <motion.h2 className="text-md  text-zinc-900 text-left" layout>
             {company}
-            <small className="text-[0.7rem] font-light text-gray-300 block leading-[1.75]">
+            <small className="text-[0.7rem] backdrop:before: text-zinc-900 block leading-[1.75]">
               {location}
             </small>
           </motion.h2>
         </motion.div>
         <motion.p
           layout
-          className="text-[0.8rem] text-gray-400 font-light tracking-wider mt-2 leading-3"
+          className="text-[0.8rem] text-zinc-900 tracking-wider leading-0 whitespace-nowrap overflow-visible"
         >
           {role}
         </motion.p>
         <motion.p
           layout
-          className="text-[0.8rem] text-gray-400 font-light tracking-wider pt-0"
+          className="text-[0.8rem] text-zinc-900 tracking-wider -mt-2"
         >
           {formatDate(dates.from)} - {formatDate(dates.to)}
         </motion.p>
@@ -261,9 +266,9 @@ const WorkExperienceItem = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="pt-2 mt-4 border-t-2  border-dotted border-zinc-800"
+              className="pt-2 mt-4 border-t-2  border-dotted border-zinc-400"
             >
-              <motion.div className="text-lg font-medium text-white tracking-wider mt-4">
+              <motion.div className="text-lg font-medium text-zinc-900 tracking-wider mt-4">
                 Responsibilities
               </motion.div>
               <motion.ul layout className="mb-4 gap-3">
@@ -271,9 +276,9 @@ const WorkExperienceItem = ({
                   return (
                     <motion.li
                       key={i}
-                      className="text-white font-light tracking-wider sm:text-sm text-[0.75rem] mt-2 mb-1 max-w-prose bullet flex items-start"
+                      className="text-zinc-900 font-light tracking-wider sm:text-sm text-[0.75rem] mt-2 mb-1 max-w-prose bullet flex items-start"
                     >
-                      <span className="inline-block text-yellow-500 mr-2 sm:mt-[5px] mt-[3px]">
+                      <span className="inline-block text-yellow-600 mr-2 sm:mt-[5px] mt-[3px]">
                         <FaAngleRight size={10} />
                       </span>
                       <p className="whitespace-pre-line">{text}</p>
@@ -293,7 +298,7 @@ const WorkExperienceItem = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             className={classnames(
-              "bg-red-500  text-white text-sm font-light px-2 py-1 text-center rounded-full absolute top-0 drop-shadow-md -translate-y-2/4 right-0 translate-x-2/4 w-[32px] h-[32px] flex items-center justify-center"
+              "bg-red-500  text-red-200 text-sm font-light px-2 py-1 text-center rounded-full absolute top-0 -translate-y-2/4 right-0 translate-x-2/4 w-[32px] h-[32px] flex items-center justify-center"
             )}
             onClick={() => handleShowMore()}
           >
@@ -303,7 +308,7 @@ const WorkExperienceItem = ({
           </motion.button>
         )}
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -314,6 +319,18 @@ const WorkExperienceSection = () => {
   const selectedItem = items.find(
     (item) => item.id === selected
   ) as (typeof experienceList)[0]
+
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { amount: 1, once: true })
+
+  useEffect(() => {
+    if (inView)
+      animate(
+        ".work-experience-item",
+        { y: [10, 0], opacity: [0, 1] },
+        { delay: stagger(0.12) }
+      )
+  }, [inView])
 
   return (
     <CardContainer
@@ -330,13 +347,27 @@ const WorkExperienceSection = () => {
         "sm:w-2/4 w-full flex-1 flex-col w-autoflex-wrap items-center justify-start relative max-h-fit min-w-[280px] sm:min-w-[500px]"
       }
     >
-      <CardHeader>Work Experience</CardHeader>
-      <div className="flex flex-wrap gap-4 justify-center w-auto pt-4">
+      {/* <CardHeader className="mb-3">Work Experience</CardHeader>
+       */}
+
+      <CardContainer className="flex w-full mx-auto max-w-[600px]">
+        <CardHeader className="m-auto flex items-center justify-center gap-3 py-2 rounded-xl w-fit text-center mx-auto text-zinc-900 text-xl font-medium">
+          <span className="text-zinc-900">
+            <FaLaptop size={20} />
+          </span>
+          <span className="text-zinc-900 drop-shadow-lg">Work Experience</span>
+        </CardHeader>
+      </CardContainer>
+      <div
+        className="flex flex-wrap gap-4 justify-center w-auto mt-5 max-w-[600px] rounded-xl"
+        ref={ref}
+      >
         {items
           .filter((item) => item.id !== selected)
           .map((item) => (
             <WorkExperienceItem
               {...item}
+              className={`work-experience-item ${inView ? "" : "opacity-0"}`}
               isOpen={selected === item.id}
               key={item.id}
               selectItem={setSelected}

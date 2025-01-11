@@ -1,10 +1,9 @@
 import Nav from "@/components/Nav/Nav"
 import "./globals.css"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import Head from "next/head"
+import { Karla } from "next/font/google"
+import type { Metadata } from "next/types"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Karla({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Moniet Sawhney : Full-stack JavaScript Developer",
@@ -19,10 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-black`}>
-        <Nav />
-        <div className="mx-auto w-full max-w-[1600px] pb-[80px] z-1 relative">
-          {children}
+      <body className={`${inter.className}  text-zinc-800 bg-[#fff]`}>
+        <div className="mx-auto w-full max-w-[900px] pb-[80px]">
+          <Nav />
+          <div className="w-full h-full z-5 relative block">{children}</div>
         </div>
       </body>
     </html>
